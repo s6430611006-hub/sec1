@@ -25,22 +25,21 @@
 
     <div>
         <input type="checkbox" name="interest" value="หนังสือ"> หนังสือ
-        <input type="checkbox" name="interest" value="กีฟา"> กีฟา
+        <input type="checkbox" name="interest" value="กีฬา"> กีฬา
         <input type="checkbox" name="interest" value="เกม"> เกม
     </div>
-      <br>
-
-    <button onclick="submitInterests()">สิ่งหน้าสนใจ</button>
-
-    <br><br>
 
     <br>
+
+    <button onclick="submitInterests()">สิ่งที่สนใจ</button>
+
+    <br><br>
 
     <button id="btnClick" onclick="buttonClick()">คลิก</button>
 
     <br><br>
 
-    <button id="btnSubmit" onclick="submitInterests()">ส่งข้อมูล</button>
+    <button id="submit_btn">ส่งข้อมูล</button>
 
     <br><br>
 
@@ -52,7 +51,10 @@
 
     <div id="content"></div>
 
+    <a id="thislink" href="https://www.google.com" target="_blank">Google Link</a>
+
     <script>
+
         console.log("Hello");
 
         let helloText = document.getElementById("helloText");
@@ -60,41 +62,63 @@
 
         let firstnameDOM = document.getElementById("firstname");
         console.log(firstnameDOM.value);
+
         document.getElementById("showName").innerHTML = "ชื่อ: " + firstnameDOM.value;
+
         let hobby = document.getElementsByName("interest");
+
         let html = "<ul>";
         for (let i = 0; i < hobby.length; i++) {
             html += "<li>" + hobby[i].value + "</li>";
         }
         html += "</ul>";
-        document.getElementById("content").innerHTML = html;
 
-        function buttonClick() {
-            console.log("คลิกแล้ว");
-            let btn = document.getElementById("btnClick");
-            btn.setAttribute("disabled", true);
-            btn.style.backgroundColor = "red";
-        }
+        document.getElementById("content").innerHTML = html;
 
         function submitInterests() {
             let interestDOM = document.querySelectorAll('input[name="interest"]');
             let content = "<ul>";
+
             for (let i = 0; i < interestDOM.length; i++) {
                 if (interestDOM[i].checked) {
                     console.log(interestDOM[i].value);
                     content += "<li>" + interestDOM[i].value + "</li>";
                 }
             }
+
             content += "</ul>";
+
             let contentDOM = document.getElementById("content");
             contentDOM.innerHTML = content;
         }
-        function overItem() {
-            console.log("เมาส์วางแล้ว");
+
+        function buttonClick() {
+            console.log("คลิกแล้ว");
         }
+
+        const btn = document.getElementById('submit_btn');
+        btn.addEventListener('click', submitData);
+
+        function submitData() {
+            console.log("ส่งข้อมูลแล้ว");
+            btn.setAttribute('disabled', true);
+        }
+
+        function overItem() {
+            console.log("วางเมาส์แล้ว");
+        }
+
         function upItem() {
             console.log("ปล่อยเมาส์แล้ว");
         }
+
+        const myname = document.getElementById('hello');
+        console.log(myname);
+
+        let thislinkDOM = document.getElementById('thislink');
+        console.log(thislinkDOM.getAttribute('href'));
+        thislinkDOM.setAttribute('href', 'https://youtube.com');
+
     </script>
 
 </body>
